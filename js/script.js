@@ -14,14 +14,11 @@ class Produto {
 
         this.listaTabela();
         this.cancelar()
-        
-
     }
 
     listaTabela(){
         let tbody = document.getElementById('tbody')
         tbody.innerText = '';
-
 
         for (let i = 0; i <this.arrayProdutos.length; i++){
             let tr = tbody.insertRow();
@@ -39,15 +36,15 @@ class Produto {
 
             let imgEdit = document.createElement('img');
             imgEdit.src = 'img/icon-edit-black.png';
+
             let imgDelete = document.createElement('img');
             imgDelete.src = 'img/icon-delete-black.png'
+            imgDelete.setAttribute("onclick", "produto.deletar("+ this.arrayProdutos[i].id +" )");
 
             td_acoes.appendChild(imgEdit);
             td_acoes.appendChild(imgDelete);
-
         }
     }
-
 
     adicionar(produto){
         this.arrayProdutos.push(produto);
@@ -62,7 +59,6 @@ class Produto {
         produto.precoProduto = document.getElementById('preco').value;
 
        return produto;
-
     }
 
     cancelar(){
@@ -70,10 +66,21 @@ class Produto {
         document.getElementById('preco').value = '';
     }
 
+    deletar(id){
+
+        let tbody = document.getElementById('tbody')
+
+        for (let i = 0; i <this.arrayProdutos.length; i++){
+            if(this.arrayProdutos[i].id == id){
+                this.arrayProdutos.splice(i, 1)
+                tbody.deleteRow(i);
+            }
+        }
+    }
+
     validaCampos(produto){
 
         let mensagem = '';
-
 
         if(produto.nomeProduto == ''){
             mensagem += '- Informe o nome do produto \n';
@@ -90,8 +97,6 @@ class Produto {
 
         return true;
     }
-
-
 }
 
 var produto = new Produto();
