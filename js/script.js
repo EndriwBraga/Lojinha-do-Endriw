@@ -66,17 +66,13 @@ class Produto {
         }
     }
 
-
     preparaEdicao(dados){
         this.editID = dados.id;
 
         document.getElementById('produto').value = dados.nomeProduto;
         document.getElementById('preco').value = dados.precoProduto;
-
+        
         document.getElementById('btn1').innerText = 'atualizar';
-
-
-
     }
 
     lerDados(){
@@ -86,7 +82,7 @@ class Produto {
         produto.nomeProduto = document.getElementById('produto').value;
         produto.precoProduto = document.getElementById('preco').value;
 
-       return produto;
+        return produto;
     }
 
     cancelar(){
